@@ -1,7 +1,12 @@
 <template>
   <ul class="list">
-    <li class="list-item" v-for="todoItem in todoItems" v-bind:key="todoItem">
-      <input type="checkbox" v-bind:id="todoItem.item" />
+    <li class="list-item" v-for="todoItem in todoItems" v-bind:key="todoItem.item">
+      <input
+        type="checkbox"
+        v-bind:id="todoItem.item"
+        v-bind:checked="todoItem.completed === true"
+        v-on:change="toggleComplete(todoItem)"
+        />
       <label v-bind:for="todoItem.item" class="list-label">
         <p class="list-text">{{ todoItem.item }}</p>
       </label>
@@ -29,6 +34,12 @@
             )
           }
         }
+      }
+    },
+    methods: {
+      toggleComplete(todoItem) {
+        todoItem.completed = !todoItem.completed
+        localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
       }
     }
   }

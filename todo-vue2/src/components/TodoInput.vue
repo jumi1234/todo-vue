@@ -25,7 +25,8 @@ import getDate from "../assets/common/getDate";
         if(this.newTodoItem !== "") {
           var value = {
             item: this.newTodoItem,
-            date: `${getDate().date} ${getDate().week}`
+            date: `${getDate().date} ${getDate().week}`,
+            completed: false 
           }
           // JSON.stringify() 객체를 JSON 문자열로 변환
           localStorage.setItem(this.newTodoItem, JSON.stringify(value))
