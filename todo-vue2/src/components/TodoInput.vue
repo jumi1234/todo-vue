@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import getDate from "../assets/common/getDate";
   export default {
     data() {
       return {
@@ -24,8 +25,9 @@
         if(this.newTodoItem !== "") {
           var value = {
             item: this.newTodoItem,
-            date: `${new Date().getMonth() + 1}${new Date().getDate()}`
+            date: `${getDate().date} ${getDate().week}`
           }
+          // JSON.stringify() 객체를 JSON 문자열로 변환
           localStorage.setItem(this.newTodoItem, JSON.stringify(value))
           this.clearInput()
         }
