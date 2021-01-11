@@ -4,3 +4,13 @@
     <button class="add-button">추가</button>
   </div>
 </template>
+
+<script>
+  export default {
+    data() {
+      return {
+        newTodoItem: ""
+      }
+    }
+  }
+</script>
