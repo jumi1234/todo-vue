@@ -1,19 +1,23 @@
 <template>
   <div id="app">
-    <TodoHeader />
-    <TodoTitle v-bind:propsdata="checkCount" />
-    <!-- TodoInput에서 $emit으로 받아온 newTodoItem 데이터를 가지고 addOneItem 실행 -->
-    <TodoInput v-on:addItem="addOneItem" />
-    <TodoController
-      v-on:clearAll="clearAllItem"
-      v-on:sortItem="sortAllItem"
-    />
-    <TodoList
-      v-bind:propsdata="todoItems"
-      v-on:toggleItem="toggleOneItem"
-      v-on:removeItem="removeOneItem"
-    />
-    <TodoFooter />
+    <div class="top">
+      <TodoHeader />
+      <TodoTitle v-bind:propsdata="checkCount" />
+      <!-- TodoInput에서 $emit으로 받아온 newTodoItem 데이터를 가지고 addOneItem 실행 -->
+      <TodoInput v-on:addItem="addOneItem" />
+    </div>
+    <div class="middle">
+      <TodoController
+        v-on:clearAll="clearAllItem"
+        v-on:sortItem="sortAllItem"
+      />
+      <TodoList
+        v-bind:propsdata="todoItems"
+        v-on:toggleItem="toggleOneItem"
+        v-on:removeItem="removeOneItem"
+      />
+      <TodoFooter />
+    </div>
   </div>
 </template>
 
@@ -38,7 +42,7 @@ export default {
   },
   data() {
     return {
-      todoItems: []
+      todoItems: [],
     }
   },
   created() {
@@ -57,7 +61,7 @@ export default {
     addOneItem(todoItem) {
       var value = {
         item: todoItem,
-        date: `${getDate().date} ${getDate().week}`,
+        date: `${getDate().month}/${getDate().date} ${getDate().week}`,
         time: getDate().time,
         completed: false
       }
@@ -121,12 +125,20 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+  .top {
+    padding: 30px;
+    background: #9796f0; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #9796f0, #fbc7d4); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #9796f0, #fbc7d4);
+  }
+  .middle {
+    padding: 24px;
+  }
 </style>

@@ -1,7 +1,6 @@
 <template>
   <div class="controller">
     <div class="select">
-      <label for="order">정렬</label>
       <select name="order" id="order" class="selectbox" v-model="selected" v-on:change="sortTodo">
         <option value="date-asc">날짜 오름차순</option>
         <option value="date-desc">날짜 내림차순</option>
@@ -28,3 +27,17 @@
     }
   }
 </script>
+
+<style>
+  .controller {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  select {
+    border: 1px solid lightgray;
+  }
+  button {
+    border: 0;
+  }
+</style>

@@ -6,8 +6,8 @@
       placeholder="할 일을 입력하세요"
       v-model="newTodoItem"
       v-on:keyup.enter="addTodoItem" />
-    <button class="add-button" v-on:click="addTodoItem">
-      <span class="blind">추가</span>
+    <button class="add-button" variant="outline-primary" v-on:click="addTodoItem">
+      <span class="blind">➕</span>
     </button>
   </div>
 </template>
@@ -33,3 +33,23 @@
     }
   }
 </script>
+
+<style>
+  .add {
+    display: flex;
+    justify-content: center;
+  }
+  .add input {
+    width: 300px;
+    background: rgba(255, 255, 255, .65);
+    border: 0;
+    border-radius: 20px;
+    padding: 8px;
+  }
+  .add-button {
+    background: rgba(255, 255, 255, .85);
+    width: 40px;
+    border-radius: 24px;
+    margin-left: 2px;
+  }
+</style>

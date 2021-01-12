@@ -22,3 +22,12 @@
     }
   }
 </script>
+
+<style>
+  .title-task-count {
+    font-size: 30px;
+  }
+  .title-task-total {
+    font-weight: bold;
+  }
+</style>
