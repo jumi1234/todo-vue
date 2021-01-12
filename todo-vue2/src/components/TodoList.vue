@@ -1,6 +1,6 @@
 <template>
   <ul class="list">
-    <b-list-group class="list-item" v-for="todoItem in propsdata" v-bind:key="todoItem.item">
+    <b-list-group class="list-item" v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item">
       <b-list-group-item>
       <input
         type="checkbox"
