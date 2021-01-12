@@ -1,11 +1,18 @@
 <template>
   <div id="app">
     <TodoHeader />
-    <TodoTitle />
+    <TodoTitle v-bind:propsdata="checkCount" />
     <!-- TodoInput에서 $emit으로 받아온 newTodoItem 데이터를 가지고 addOneItem 실행 -->
     <TodoInput v-on:addItem="addOneItem" />
-    <TodoController />
-    <TodoList v-bind:propsdata="todoItems"/>
+    <TodoController
+      v-on:clearAll="clearAllItem"
+      v-on:sortItem="sortAllItem"
+    />
+    <TodoList
+      v-bind:propsdata="todoItems"
+      v-on:toggleItem="toggleOneItem"
+      v-on:removeItem="removeOneItem"
+    />
     <TodoFooter />
   </div>
 </template>
@@ -57,7 +64,58 @@ export default {
       // JSON.stringify() 객체를 JSON 문자열로 변환
       localStorage.setItem(todoItem, JSON.stringify(value))
       this.todoItems.push(value)
+    },
+    removeOneItem(todoItem, index) {
+      localStorage.removeItem(todoItem.item)
+      this.todoItems.splice(index, 1)
+    },
+    toggleOneItem(todoItem) {
+      todoItem.completed = !todoItem.completed
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
+    },
+    clearAllItem() {
+      this.todoItems = []
+      localStorage.clear()
+    },
+    sortTodoLatest() {
+      this.todoItems.sort((a, b) => {
+        return b.time - a.time
+      })
+    },
+    sortTodoOldest() {
+      this.todoItems.sort((a, b) => {
+        return a.time - b.time
+      })
+    },
+    sortAllItem(selectedSort) {
+      if(selectedSort.value === "date-desc") {
+        this.sortTodoLatest()
+      } else if(selectedSort.value === "date-asc") {
+        this.sortTodoOldest()
+      }
     }
+  },
+  computed: {
+    checkCount() {
+      const checkLeftItems = () => {
+        let leftCount = 0;
+        for (let i = 0; i < this.todoItems.length; i++) {
+          if (this.todoItems[i].completed === false) {
+            leftCount++;
+          }
+        }
+        return leftCount;
+      };
+
+      const count = {
+        total: this.todoItems.length,
+        left: checkLeftItems()
+      };
+      return count;
+    }
+  },
+  mounted() {
+    this.sortTodoOldest()
   }
 }
 </script>

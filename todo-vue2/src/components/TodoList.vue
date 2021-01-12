@@ -20,14 +20,12 @@
   export default {
     props: ["propsdata"],
     methods: {
-      toggleComplete(todoItem) {
-        todoItem.completed = !todoItem.completed
-        localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
-      },
       removeTodo(todoItem, index) {
-        localStorage.removeItem(todoItem.item)
-        this.todoItems.push(index, 1)
+        this.$emit("removeItem", todoItem, index);
+      },
+      toggleComplete(todoItem) {
+        this.$emit("toggleItem", todoItem);
       }
-    }
+    },
   }
 </script>

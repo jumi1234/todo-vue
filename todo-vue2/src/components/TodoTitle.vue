@@ -2,17 +2,22 @@
   <div class="title">
     <p class="title-message">{{ message }}</p>
     <p class="title-task">
-      <span class="task-total">{{ taskTotal }}</span> tasks today.
+      <span class="title-task-top">남은 할 일</span><br />
+      <span class="title-task-count">
+        <em class="title-task-left">{{ propsdata.left }}</em>
+        <em v-if="propsdata.total" class="title-task-total">&nbsp;/ {{ propsdata.total }}</em>
+      </span>
+      <span class="title-task-info"></span>
     </p>
   </div>
 </template>
 
 <script>
   export default {
+    props: ["propsdata"],
     data() {
       return {
         message: "안녕, shab",
-        taskTotal: 5
       }
     }
   }

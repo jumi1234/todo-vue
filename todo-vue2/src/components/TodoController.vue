@@ -1,12 +1,10 @@
 <template>
   <div class="controller">
     <div class="select">
-      <label for="order">Order</label>
-      <select name="order" id="order" class="selectbox">
+      <label for="order">정렬</label>
+      <select name="order" id="order" class="selectbox" v-model="selected" v-on:change="sortTodo">
         <option value="date-asc">날짜 오름차순</option>
         <option value="date-desc">날짜 내림차순</option>
-        <option value="name-asc">이름 오름차순</option>
-        <option value="name-desc">이름 내림차순</option>
       </select>
     </div>
     <button class="clear" v-on:click="clearTodo">전체 삭제</button>
@@ -15,9 +13,17 @@
 
 <script>
   export default {
+    data() {
+      return {
+        selected: "date-asc"
+      }
+    },
     methods: {
+      sortTodo() {
+        this.$emit("sortItem", { value: this.selected })
+      },
       clearTodo() {
-        localStorage.clear()
+        this.$emit("clearAll")
       }
     }
   }
