@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import getDate from "../assets/common/getDate";
   export default {
     data() {
       return {
@@ -23,13 +22,8 @@ import getDate from "../assets/common/getDate";
     methods: {
       addTodoItem() {
         if(this.newTodoItem !== "") {
-          var value = {
-            item: this.newTodoItem,
-            date: `${getDate().date} ${getDate().week}`,
-            completed: false 
-          }
-          // JSON.stringify() 객체를 JSON 문자열로 변환
-          localStorage.setItem(this.newTodoItem, JSON.stringify(value))
+          // 할일 추가 시 바로 추가되도록 상위 컴포넌트에 알려줌
+          this.$emit("addItem", this.newTodoItem)
           this.clearInput()
         }
       },
