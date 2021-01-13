@@ -52,10 +52,8 @@
   }
   p.list-date {
     margin-bottom: 0;
-    position: absolute;
-    right: 10%;
     font-size: 14px;
-color: #7a848c;
+    color: #7a848c;
   }
   input:checked + label p {
     color: #b0b5c1;

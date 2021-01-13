@@ -46,10 +46,16 @@
     border-radius: 20px;
     padding: 8px;
   }
+  .add input:focus {
+    outline:none;
+  }
   .add-button {
     background: rgba(255, 255, 255, .85);
     width: 40px;
     border-radius: 24px;
     margin-left: 2px;
+  }
+  .add-button:focus {
+    outline:0;
   }
 </style>

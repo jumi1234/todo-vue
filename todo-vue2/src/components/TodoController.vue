@@ -40,4 +40,7 @@
   button {
     border: 0;
   }
+  button:focus {
+    outline: none !important;
+  }
 </style>
